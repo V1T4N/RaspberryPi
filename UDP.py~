@@ -6,8 +6,6 @@ UDP_IP = "192.168.0.12"
 UDP_PORT = 5005
 
 
-
-
 while True:
 
  MESSAGE = getch()

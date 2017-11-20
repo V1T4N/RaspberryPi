@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import socket
 import serial 
 import time
@@ -25,21 +27,21 @@ class Mythread(threading.Thread): #マルチスレッド処理
 	global SLAVE_ADDRESS
 	while(True):
          #wasdキーでそれぞれUDPパケット送信　送信後dataを”１”にしてクリアする
-        if data == "w":
-	 bus.write_byte(SLAVE_ADDRESS,ord("w"))
-         data = "1"
+         if data == "w":
+	  bus.write_byte(SLAVE_ADDRESS,ord("w"))
+          data = "1"
 
-        if data == "a":
-	 bus.write_byte(SLAVE_ADDRESS,ord("a"))
-         data = "1"
+         if data == "a":
+	  bus.write_byte(SLAVE_ADDRESS,ord("a"))
+          data = "1"
 
-        if data == "s":
-	 bus.write_byte(SLAVE_ADDRESS,ord("s"))
-         data = "1"
+         if data == "s":
+	  bus.write_byte(SLAVE_ADDRESS,ord("s"))
+          data = "1"
 
-        if data == "d":
-	 bus.write_byte(SLAVE_ADDRESS,ord("d"))
-         data = "1"
+         if data == "d":
+	  bus.write_byte(SLAVE_ADDRESS,ord("d"))
+          data = "1"
 	 
 	time.sleep(0.0010)
 	 	

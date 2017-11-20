@@ -5,26 +5,26 @@ import threading
 import smbus
 
 
-UDP_IP = "0.0.0.0" #IPアドレス 受信側はlocalhost
-UDP_PORT = 5005 #UDPパケット送信に使うポート
+UDP_IP = "0.0.0.0"
+UDP_PORT = 5005
 data = ""
+#s = serial.Serial('/dev/ttyACM0' , 9600)
 
-
-sock = socket.socket(socket.AF_INET, 
-                         socket.SOCK_DGRAM)
+sock = socket.socket(socket.AF_INET, # Internet
+                         socket.SOCK_DGRAM) # UDP
 sock.bind((UDP_IP, UDP_PORT))
 
-bus = smbus.SMBus(1) #i2c初期化
+bus = smbus.SMBus(1)
 
-SLAVE_ADDRESS = 0x04 #i2cスレーブアドレス
+SLAVE_ADDRESS = 0x04
 
-class Mythread(threading.Thread): #マルチスレッド処理
+class Mythread(threading.Thread):
 
  def run(self):
-	global data #変数のグローバル化
+	global data
 	global SLAVE_ADDRESS
 	while(True):
-         #wasdキーでそれぞれUDPパケット送信　送信後dataを”１”にしてクリアする
+	 
         if data == "w":
 	 bus.write_byte(SLAVE_ADDRESS,ord("w"))
          data = "1"
@@ -47,7 +47,7 @@ class Mythread(threading.Thread): #マルチスレッド処理
 mythread = Mythread()
 mythread.start()
 
-while True: #UDP送信
-       data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
+while True:
+       data, addr = sock.recvfrom(10240) # buffer size is 1024 bytes
        print "received message:", data
       

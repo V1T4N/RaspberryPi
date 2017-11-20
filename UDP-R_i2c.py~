@@ -49,7 +49,7 @@ class Mythread(threading.Thread): #マルチスレッド処理
 mythread = Mythread()
 mythread.start()
 
-while True: #UDP受信
+while True: #UDP受信 
        data, addr = sock.recvfrom(1024) #バッファ1024byte
        print "received message:", data  #受信したデータを表示
       

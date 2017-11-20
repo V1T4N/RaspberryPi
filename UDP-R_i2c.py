@@ -8,7 +8,7 @@ import smbus
 
 
 UDP_IP = "0.0.0.0" #IPアドレス 受信側はlocalhost
-UDP_PORT = 5005 #UDPパケット送受信に使うポート
+UDP_PORT = 5005  #UDPパケット送受信に使うポート
 data = ""
 
 

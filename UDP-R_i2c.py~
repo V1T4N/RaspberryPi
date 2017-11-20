@@ -8,7 +8,7 @@ import smbus
 
 
 UDP_IP = "0.0.0.0" #IPアドレス 受信側はlocalhost
-UDP_PORT = 5005 #UDPパケット送信に使うポート
+UDP_PORT = 5005 #UDPパケット送受信に使うポート
 data = ""
 
 
@@ -26,7 +26,7 @@ class Mythread(threading.Thread): #マルチスレッド処理
 	global data #変数のグローバル化
 	global SLAVE_ADDRESS
 	while(True):
-         #wasdキーでそれぞれUDPパケット送信　送信後dataを”１”にしてクリアする
+         #wasdキーでそれぞれUDPパケット受信　受信後dataを”１”にしてクリアする
          if data == "w":
 	  bus.write_byte(SLAVE_ADDRESS,ord("w"))
           data = "1"
@@ -49,7 +49,7 @@ class Mythread(threading.Thread): #マルチスレッド処理
 mythread = Mythread()
 mythread.start()
 
-while True: #UDP送信
-       data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
-       print "received message:", data
+while True: #UDP受信
+       data, addr = sock.recvfrom(1024) #バッファ1024byte
+       print "received message:", data  #受信したデータを表示
       
